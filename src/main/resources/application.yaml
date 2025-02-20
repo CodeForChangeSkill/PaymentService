@@ -1,0 +1,35 @@
+server:
+  port: 8186
+
+  management:
+    tracing:
+      enabled: true
+      sampling:
+        probability: 1.0 # Ensure all requests are traced
+
+logging:
+  level:
+    com.codeforchangeskill: DEBUG
+    org.springframework.cloud: DEBUG
+    io.micrometer : DEBUG
+    brave : DEBUG
+
+spring:
+  config :
+    import : optional:configserver:http://localhost:9290
+
+  application :
+    name : PAYMENT-SERVICE
+
+  datasource:
+    url: jdbc:mysql://${DB_HOST:localhost}:3306/paymentdb
+    username: root
+    password: root@123
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    database-platform : org.hibernate.dialect.MySQL8Dialect
+    hibernate:
+      ddl-auto: update
+    #profiles :
+    #     active : git
+
