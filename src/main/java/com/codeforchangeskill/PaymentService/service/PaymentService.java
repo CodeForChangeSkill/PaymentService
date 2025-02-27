@@ -6,5 +6,5 @@ import com.codeforchangeskill.PaymentService.model.PaymentResponse;
 public interface PaymentService {
     Long doPayment(PaymentRequest paymentRequest);
 
-    PaymentResponse getPaymentDetailsByOrder(Long orderId);
+    PaymentResponse getPaymentDetailsByOrder(String orderId);
 }

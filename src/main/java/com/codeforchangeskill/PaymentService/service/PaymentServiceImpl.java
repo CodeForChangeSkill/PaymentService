@@ -44,16 +44,16 @@ public class PaymentServiceImpl implements PaymentService {
     }
 
     @Override
-    public PaymentResponse getPaymentDetailsByOrder(Long orderId) {
+    public PaymentResponse getPaymentDetailsByOrder(String orderId) {
 
-     log.info("Payment details for the given order id ;{}",orderId);
+     log.info("Getting Payment details for the given order id ;{}",orderId);
      TransactionDetail transactionDetail
-             =transactionDetailsRepository.findByOrderId(orderId);
+             =transactionDetailsRepository.findByOrderId(Long.valueOf(orderId));
 
         PaymentResponse paymentResponse
                 =PaymentResponse.builder()
                 .paymentId(transactionDetail.getId())
-                .paymentStatus(transactionDetail.getPaymentStatus())
+                .status(transactionDetail.getPaymentStatus())
                 .paymentMode(PaymentMode.valueOf(transactionDetail.getPaymentMode()))
                 .paymentDate(transactionDetail.getPaymentDate())
                 .amount(transactionDetail.getAmount())
